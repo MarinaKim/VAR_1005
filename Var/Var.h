@@ -5,10 +5,10 @@ class var
 private:
 	int intV;
 	double doubleV;
-	char *stringV;
-	bool intFlag;
-	bool doubleFlag;
-	bool stringFlag;
+	char stringV[500];
+	bool intFlag = false;
+	bool doubleFlag = false;
+	bool stringFlag = false;
 
 public:
 	var() { intFlag = false;doubleFlag = false;stringFlag = false; };
@@ -18,7 +18,7 @@ public:
 
 	operator int();
 	operator double();
-	operator char*();
+	operator const char*();
 
 	var operator+(int v);
 	var operator+(double v);

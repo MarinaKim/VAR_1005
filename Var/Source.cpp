@@ -34,6 +34,23 @@ int main() {
 		b = d + 15;
 		b.show();
 	}break;
+	case 5: {
+		var a = "25.5";
+		/*var c = a+ 30;*/
+		var c = a + 30.1;
+		/*a.show();*/
+		cout << endl;
+		c.show();
+		cout << endl;
+		cout << "-----------------------------------------------" << endl;
+	}break;
+	case 6: {
+		var d = 10;
+		var m = d + "120";
+		m.show();
+		cout << "-----------------------------------------------" << endl;
+
+	}break;
 	}
 	system("pause");
 	return 0;

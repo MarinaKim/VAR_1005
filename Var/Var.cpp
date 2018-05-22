@@ -1,71 +1,126 @@
 #include "var.h"
 
-var::var(int intV) { this->intV = intV; this->intFlag = true; this->doubleFlag = false; this->stringFlag = false; }
-var::var(double doubleV) { this->doubleV = doubleV; this->doubleFlag = true; this->intFlag = false;this->stringFlag = false; }
-var::var(const char *stringV) {
-	this->stringV = (char*)stringV;
+var::var(int intV) {
+	this->intV = intV;
+	intFlag = true;
+}
+var::var(double doubleV) {
+	this->doubleV = doubleV;
+	this->doubleFlag = true;
 
-	//strcpy(this->stringV, stringV);
-	this->stringFlag = true;
-	this->intFlag = false;
-	this->doubleFlag = false;
+}
+var::var(const char* stringV) {
+	stringFlag = true;
+	strcpy_s(this->stringV, stringV);
+
 }
 
-var::operator int() { intFlag = true; return intV; }
-var::operator double() { doubleFlag = true; return doubleV; }
-var::operator char*() { stringFlag = true; return stringV; }
+var::operator int() {
+	intFlag = true;
+	doubleFlag = false;
+	stringFlag = false;
+	return intV;
+}
+var::operator double() {
+	doubleFlag = true;
+	intFlag = false;
+	stringFlag = false;
+	return doubleV;
+}
+var::operator const char*() {
+	stringFlag = true;
+	intFlag = false;
+	doubleFlag = false;
+	return stringV;
+}
 
-var var::operator+(int v)
-{
+var var::operator+(int v) {
 	var tmp;
-	if (intFlag)
-	{
+
+	if (intFlag) {
 		tmp.intFlag = true;
 		tmp.intV = this->intV + v;
-
 	}
 	else if (doubleFlag)
 	{
 		tmp.doubleFlag = true;
 		tmp.doubleV = this->doubleV + v;
 	}
+
 	else if (stringFlag)
 	{
-		tmp.stringFlag = true;
 		char buf[100];
+		tmp.stringFlag = true;
+
 		_itoa_s(v, buf, 10);
-		int l = strlen(this->stringV);
-		char * ptr = this->stringV;
-
-		char *tmp_ptr;
-		tmp.stringV = new char[size + 1];
-
-		while (ptr != '\0')
-		{
-			*tmp_ptr++ = *ptr++;
-		}
-		/*strcpy(tmp.stringV, this->stringV);*/
+		strcpy_s(tmp.stringV, this->stringV);
 		strcat(tmp.stringV, buf);
 
 	}
 	return tmp;
+
 }
-//
-//var var::operator+(double v)
-//{
-//	return var();
-//}
-//
-//var var::operator+(string v)
-//{
-//	return var();
-//}
+
+var var::operator+(double v)
+{
+	var tmp;
+
+	if (intFlag) {
+		tmp.intFlag = true;
+		tmp.intV = this->intV + v;
+	}
+	else if (doubleFlag)
+	{
+		tmp.doubleFlag = true;
+		tmp.doubleV = this->doubleV + v;
+	}
+
+	else if (stringFlag)
+	{
+		char buf[100];
+		tmp.stringFlag = true;
+
+		sprintf(buf, "%.2f", v);
+		strcpy_s(tmp.stringV, this->stringV);
+		strcat(tmp.stringV, buf);
+
+	}
+
+	return tmp;
+}
+
+var var::operator+(const char * v)
+{
+	var tmp;
+
+	if (intFlag) {
+		tmp.intFlag = true;
+		tmp.intV = this->intV + atoi(v);
+	}
+	else if (doubleFlag)
+	{
+		tmp.doubleFlag = true;
+		tmp.doubleV = this->doubleV + atof(v);
+	}
+
+	else if (stringFlag)
+	{
+		tmp.stringFlag = true;
+		strcpy_s(tmp.stringV, this->stringV);
+		strcat(tmp.stringV, v);
+	}
+
+	return tmp;
+}
+
+
 
 void var::show() {
 	if (intFlag)
-		cout << intV << endl;
+		cout << intV;
 	else if (doubleFlag)
-		cout << doubleV << endl;
+		cout << doubleV;
 	else if (stringFlag)
-		cout << stringV << endl;
+		cout << stringV;
+	cout << endl;
 }
