@@ -23,5 +23,9 @@ public:
 	var operator+(int v);
 	var operator+(double v);
 	var operator + (const char* v);
+
+	/*var operator-(int v);
+	var operator-(double v);
+	var operator-(const char* v);*/
 	void show();
 };

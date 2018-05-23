@@ -55,7 +55,6 @@ var var::operator+(int v) {
 		_itoa_s(v, buf, 10);
 		strcpy_s(tmp.stringV, this->stringV);
 		strcat(tmp.stringV, buf);
-
 	}
 	return tmp;
 
@@ -85,7 +84,6 @@ var var::operator+(double v)
 		strcat(tmp.stringV, buf);
 
 	}
-
 	return tmp;
 }
 
@@ -109,7 +107,6 @@ var var::operator+(const char * v)
 		strcpy_s(tmp.stringV, this->stringV);
 		strcat(tmp.stringV, v);
 	}
-
 	return tmp;
 }
 

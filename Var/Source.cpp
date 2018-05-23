@@ -37,7 +37,7 @@ int main() {
 	case 5: {
 		var a = "25.5";
 		/*var c = a+ 30;*/
-		var c = a + 30.1;
+		var c = a + 30;
 		/*a.show();*/
 		cout << endl;
 		c.show();
@@ -49,7 +49,10 @@ int main() {
 		var m = d + "120";
 		m.show();
 		cout << "-----------------------------------------------" << endl;
-
+		
+	}break;
+	case 7: {
+		
 	}break;
 	}
 	system("pause");
